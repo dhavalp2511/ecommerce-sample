@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">EcommerceDemo</string>
+
+    <string name="profile">Profile</string>
+    <string name="products">Products</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="msg_required_field">This field is required.</string>
+    <string name="msg_invalid_email_address">Invalid email address</string>
+    <string name="msg_invalid_email_or_password">Invalid email address or password</string>
+    <string name="logout">Logout</string>
+    <string name="rewards">Rewards</string>
+    <string name="click_here_to_join_us_to_get_more_rewards">Click Here to join us to get more rewards</string>
+    <string name="product_price">INR %1$s</string>
+    <string name="thank_you_for_joining_reward_program">Thank you for joining our rewards program</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="user_name">User Name</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="address">Address</string>
+    <string name="points_earned">Points Earned</string>
+    <string name="wallet_balance">Wallet balance</string>
+
+</resources>

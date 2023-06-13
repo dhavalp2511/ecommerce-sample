@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.ecommercedemo.ui.login.LoginViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/MainBackgroundStyle">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSignIn"
+            style="@style/TitleStyle"
+            android:text="@string/login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLoginEmail"
+            style="@style/TextInputLayoutStyle"
+            android:layout_marginTop="@dimen/_70sdp"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/baseline_person_24"
+            app:endIconTint="@color/black50"
+            app:errorTextColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSignIn">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditTextStyle"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text="@={viewModel.email}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLoginPassword"
+            style="@style/TextInputLayoutStyle"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/black50"
+            app:errorTextColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilLoginEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditTextStyle"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:text="@={viewModel.password}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignIn"
+            style="@style/AppThemeButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48sdp"
+            android:paddingStart="@dimen/_70sdp"
+            android:paddingEnd="@dimen/_70sdp"
+            android:text="@string/login"
+            app:cornerRadius="@dimen/_22sdp"
+            android:onClick="@{() -> viewModel.login()}"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilLoginPassword"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewModel.progress ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
