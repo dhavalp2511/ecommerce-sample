@@ -7,7 +7,6 @@ enum class ProductListType(val type: Int) {
     PRODUCT(1), REWARDS(1),
 }
 
-
 data class ProductListModel(
     val type: ProductListType,
     val product: ProductListingResponse.Data.Product?

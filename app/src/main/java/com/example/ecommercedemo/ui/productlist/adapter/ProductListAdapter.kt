@@ -11,17 +11,20 @@ import com.example.ecommercedemo.databinding.ItemAdapterProductBinding
 import com.example.ecommercedemo.databinding.ItemAdapterRewardsBinding
 
 
-class ProductListAdapter constructor(private val items : MutableList<ProductListModel> = mutableListOf(),val itemClick : (item : ProductListModel) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ProductListAdapter constructor(
+    private val items: MutableList<ProductListModel> = mutableListOf(),
+    val itemClick: (item: ProductListModel) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.item_adapter_product ->
-                ProductViewHolder(
-                    ItemAdapterProductBinding.inflate(
-                        LayoutInflater.from(
-                            parent.context
-                        ), parent, false
-                    )
+            R.layout.item_adapter_product -> ProductViewHolder(
+                ItemAdapterProductBinding.inflate(
+                    LayoutInflater.from(
+                        parent.context
+                    ), parent, false
                 )
+            )
+
             R.layout.item_adapter_rewards -> RewardViewHolder(
                 ItemAdapterRewardsBinding.inflate(
                     LayoutInflater.from(
@@ -29,6 +32,7 @@ class ProductListAdapter constructor(private val items : MutableList<ProductList
                     ), parent, false
                 )
             )
+
             else -> throw IllegalArgumentException("unknown view type")
         }
     }
@@ -61,10 +65,13 @@ class ProductListAdapter constructor(private val items : MutableList<ProductList
             val item = items[position]
             binding.productLabel.text = item.product?.name
             binding.productDescription.text = item.product?.productDesc
-            binding.discountedProductPrice.text =  binding.root.context.getString( R.string.product_price ,item.product?.offerPrice)
-            binding.productPrice.text =  binding.root.context.getString( R.string.product_price ,item.product?.price)
+            binding.discountedProductPrice.text =
+                binding.root.context.getString(R.string.product_price, item.product?.offerPrice)
+            binding.productPrice.text =
+                binding.root.context.getString(R.string.product_price, item.product?.price)
             binding.productPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            Glide.with(binding.root).load(item.product?.productUrl).centerCrop().into(binding.productImage)
+            Glide.with(binding.root).load(item.product?.productUrl).centerCrop()
+                .into(binding.productImage)
             binding.root.setOnClickListener {
                 itemClick(item)
             }
@@ -74,9 +81,14 @@ class ProductListAdapter constructor(private val items : MutableList<ProductList
     inner class RewardViewHolder(val binding: ItemAdapterRewardsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            binding.label.text =  binding.root.context.getString(R.string.click_here_to_join_us_to_get_more_rewards)
+            binding.label.text =
+                binding.root.context.getString(R.string.click_here_to_join_us_to_get_more_rewards)
             binding.root.setOnClickListener {
-                Toast.makeText(binding.root.context,binding.root.context.getString(R.string.thank_you_for_joining_reward_program) , Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    binding.root.context,
+                    binding.root.context.getString(R.string.thank_you_for_joining_reward_program),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
